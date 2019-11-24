@@ -12,14 +12,23 @@
    "downlevelIteration": true,
    "allowJs": true,
    "typeRoots" : [
+     "lib/OpenCircuits/site/public/ts/shared/utils/typings",
      "node_modules/@types" // path to your typings directory (relative to tsconfig.json)
    ],
-   "baseUrl": "."
+   "baseUrl": ".",
+   "paths": {
+      "Vector": ["lib/OpenCircuits/app/core/ts/utils/math/Vector"],
+      "math/*": ["lib/OpenCircuits/app/core/ts/utils/math/*"],
+      "core/*": ["lib/OpenCircuits/app/core/ts/*"],
+      "fss/*": ["app/fss/ts/*"],
+      "site/shared/*": ["lib/OpenCircuits/site/public/ts/shared/*"],
+      "site/fss/*": ["site/public/ts/fss/*"]
+  }
  },
  "exclude": [
    "node_modules"
  ]
 }
- 
- 
+
+
 
