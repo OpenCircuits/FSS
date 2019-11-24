@@ -1,0 +1,3 @@
+[submodule "lib/OpenCircuits"]
+	path = lib/OpenCircuits
+	url = git@github.com:OpenCircuits/OpenCircuits.git
