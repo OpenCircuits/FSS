@@ -1,14 +1,13 @@
 import {SelectionTool} from "core/tools/SelectionTool";
 import {Input} from "core/utils/Input";
 import {FSSNode} from "fss/models/FSSNode";
+import {PlaceAction} from "core/actions/addition/PlaceAction";
 
 export class FSSTool extends SelectionTool {
 
     public onClick(input: Input, button: number): boolean {
-        console.log("ASD");
         if (super.onClick(input, button))
             return true;
-        console.log("ASD2");
 
         const worldMousePos = this.camera.getWorldPos(input.getMousePos());
 
@@ -16,6 +15,6 @@ export class FSSTool extends SelectionTool {
         const node = new FSSNode();
         node.setPos(worldMousePos);
 
-        this.designer.addObject(node);
+        this.action.add(new PlaceAction(this.designer, node).execute());
     }
 }

@@ -13,6 +13,7 @@ import {FSSDesigner} from "fss/models/FSSDesigner";
 import {FSSPort} from "fss/models/ports/FSSPort";
 import {FSSWire} from "fss/models/FSSWire";
 import {ConnectionAction} from "core/actions/addition/ConnectionAction";
+import {Vector, V} from "Vector";
 
 export class FSSWiringTool extends WiringTool {
     protected designer: FSSDesigner;
@@ -59,7 +60,8 @@ export class FSSWiringTool extends WiringTool {
         // Set one side of curve to mouse position
         const shape = this.wire.getShape();
         shape.setP2(worldMousePos);
-        shape.setC2(worldMousePos);
+
+        this.wire.onTransformChange();
 
         return true;
     }
@@ -81,6 +83,7 @@ export class FSSWiringTool extends WiringTool {
 
     public deactivate(): Action {
         const action = this.action;
+
         // Reset action
         this.action = undefined;
         return (action ? action.execute() : undefined);
