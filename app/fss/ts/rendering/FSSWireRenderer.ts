@@ -9,6 +9,8 @@ import {Line}     from "core/rendering/shapes/Line";
 import {Style}    from "core/rendering/Style";
 
 import {FSSWire} from "fss/models/FSSWire";
+import {Arrow} from "./shapes/Arrow";
+import {NODE_RADIUS} from "fss/utils/Constants";
 
 export const FSSWireRenderer = (() => {
     return {
@@ -29,6 +31,15 @@ export const FSSWireRenderer = (() => {
             const c2 = camera.getScreenPos(curve.getC2());
 
             renderer.draw(new Curve(p1, p2, c1, c2), style);
+
+            // Draw arrow
+            const dir = curve.getDerivative(1).normalize().scale(-1);
+            let pos = p2;
+            if (wire.getP2())
+                pos = pos.add(dir.scale(NODE_RADIUS / camera.getZoom()));
+            const arrowLength = 50 / camera.getZoom();
+            const arrowDistance = 30 / camera.getZoom();
+            renderer.draw(new Arrow(pos, arrowLength, arrowDistance, dir), style);
         }
     };
 })();

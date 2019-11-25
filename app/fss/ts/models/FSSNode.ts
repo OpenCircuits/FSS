@@ -1,3 +1,5 @@
+import {NODE_RADIUS} from "fss/utils/Constants";
+
 import {V} from "Vector";
 import {ClampedValue} from "math/ClampedValue";
 
@@ -16,7 +18,7 @@ export class FSSNode extends Component implements Node {
     protected ports: PortSet<FSSPort>;
 
     public constructor() {
-        super(V(50, 50));
+        super(V(2*NODE_RADIUS));
 
         this.ports = new PortSet<FSSPort>(this, new ClampedValue(1), new Positioner<FSSPort>(), FSSPort);
     }
