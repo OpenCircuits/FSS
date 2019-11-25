@@ -1,4 +1,5 @@
 import {INITIAL_WIRE_AMPLITUDE} from "fss/utils/Constants";
+import {Vector} from "Vector";
 
 import {Wire} from "core/models/Wire";
 import {FSSPort} from "./ports/FSSPort";
@@ -28,16 +29,28 @@ export class FSSWire extends Wire {
             this.shape.setP2(this.p2.getWorldTargetPos());
 
         // Update curve control points
-        const p1 = this.shape.getP1();
-        const p2 = this.shape.getP2();
-        const dir = p2.sub(p1).normalize().negativeReciprocal();
+        const dir = this.getCurveDir();
+        this.shape.setC1(dir.scale(this.amplitude).add(this.shape.getP1()));
+        this.shape.setC2(dir.scale(this.amplitude).add(this.shape.getP2()));
+    }
 
-        this.shape.setC1(dir.scale(this.amplitude).add(p1));
-        this.shape.setC2(dir.scale(this.amplitude).add(p2));
+    public setAmplitude(amp: number): void {
+        this.amplitude = amp;
+        this.onTransformChange();
     }
 
     public split(): FSSNode {
         return new FSSNode();
+    }
+
+    public getAmplitude(): number {
+        return this.amplitude;
+    }
+
+    public getCurveDir(): Vector {
+        const p1 = this.shape.getP1();
+        const p2 = this.shape.getP2();
+        return p2.sub(p1).normalize().negativeReciprocal();
     }
 
     public getIsOn(): boolean {

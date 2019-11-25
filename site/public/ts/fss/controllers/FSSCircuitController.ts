@@ -12,6 +12,7 @@ import {Selectable} from "core/utils/Selectable";
 import {Vector} from "Vector";
 import {Input} from "core/utils/Input";
 import {FSSWiringTool} from "fss/tools/FSSWiringTool";
+import {WireCurveTool} from "fss/tools/WireCurveTool";
 // import {SplitWireTool} from "core/tools/SplitWireTool";
 
 export class FSSCircuitController {
@@ -45,7 +46,8 @@ export class FSSCircuitController {
 
         this.toolManager.addTools(new PanTool(this.getCamera()),
                                   new TranslateTool(this.getCamera()),
-                                  new FSSWiringTool(this.designer, this.getCamera()));
+                                  new FSSWiringTool(this.designer, this.getCamera()),
+                                  new WireCurveTool(this.getCamera()));
 
         // input
         this.input = new Input(this.view.getCanvas());
