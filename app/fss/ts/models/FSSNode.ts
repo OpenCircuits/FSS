@@ -17,6 +17,8 @@ export class FSSNode extends Component implements Node {
 
     protected ports: PortSet<FSSPort>;
 
+    private label : string;
+
     public constructor() {
         super(V(2*NODE_RADIUS));
 

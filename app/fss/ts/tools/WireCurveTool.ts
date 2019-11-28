@@ -11,7 +11,6 @@ export class WireCurveTool extends Tool {
     private camera: Camera;
 
     private wire: FSSWire;
-    private initialAmp: number;
 
     public constructor(camera: Camera) {
         super();
@@ -34,7 +33,6 @@ export class WireCurveTool extends Tool {
             throw new Error("Tool not selection tool!");
 
         this.wire = currentTool.getCurrentlyPressedObj() as FSSWire;
-        this.initialAmp = this.wire.getAmplitude();
     }
 
     public shouldDeactivate(event: string, _: Input): boolean {

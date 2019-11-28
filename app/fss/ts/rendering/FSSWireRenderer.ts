@@ -20,7 +20,7 @@ export const FSSWireRenderer = (() => {
 
             // @TODO move to function for getting color based on being selection/on/off
             const color = selected ? SELECTED_FILL_COLOR : DEFAULT_FILL_COLOR;
-            const style = new Style(undefined, color, WIRE_THICKNESS / camera.getZoom());
+            const style = new Style(undefined, "black", WIRE_THICKNESS / camera.getZoom());
 
             // get curve and start/end positions
             const curve = wire.getShape();
