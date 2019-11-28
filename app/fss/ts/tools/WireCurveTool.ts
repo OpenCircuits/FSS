@@ -61,7 +61,9 @@ export class WireCurveTool extends Tool {
         const l = -dPos.dot(dir);
 
         // set amplitude
-        this.wire.setAmplitude(this.initialAmp - l);
+        this.wire.getShape().setC1(worldMousePos);
+        this.wire.getShape().setC2(worldMousePos);
+
 
         return true;
     }

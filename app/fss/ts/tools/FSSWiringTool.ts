@@ -50,6 +50,7 @@ export class FSSWiringTool extends WiringTool {
 
         this.wire.getShape().setP2(worldMousePos);
         this.wire.getShape().setC2(worldMousePos);
+        this.wire.getShape().setC1(this.wire.getShape().getP1());
 
         return undefined;
     }
@@ -60,8 +61,7 @@ export class FSSWiringTool extends WiringTool {
         // Set one side of curve to mouse position
         const shape = this.wire.getShape();
         shape.setP2(worldMousePos);
-
-        this.wire.onTransformChange();
+        shape.setC2(worldMousePos);
 
         return true;
     }

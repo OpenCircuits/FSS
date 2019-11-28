@@ -15,6 +15,12 @@ export class FSSWire extends Wire {
         super(p1, p2);
 
         this.amplitude = INITIAL_WIRE_AMPLITUDE;
+
+        if (p1 != null && p2 != null) {
+            const mid = p1.getWorldTargetPos().add(p2.getWorldTargetPos()).scale(0.5);
+            this.shape.setC1(mid);
+            this.shape.setC2(mid);
+        }
     }
 
     protected updateCurve(): void {
@@ -27,11 +33,6 @@ export class FSSWire extends Wire {
             this.shape.setP1(this.p1.getWorldTargetPos());
         if (this.p2 != null)
             this.shape.setP2(this.p2.getWorldTargetPos());
-
-        // Update curve control points
-        const dir = this.getCurveDir();
-        this.shape.setC1(dir.scale(this.amplitude).add(this.shape.getP1()));
-        this.shape.setC2(dir.scale(this.amplitude).add(this.shape.getP2()));
     }
 
     public setAmplitude(amp: number): void {
